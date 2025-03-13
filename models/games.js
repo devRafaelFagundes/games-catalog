@@ -25,6 +25,11 @@ const gameSchema = new mongoose.Schema({
         min : [1800, 'the release year needs to be above 1500'],
         max : [new Date().getFullYear(), 'the release date can not be in the future'],
         trim : true,
+    },
+    about : {
+        type : String,
+        trim : true,
+        default : 'this game has no information about'
     }
 })
 

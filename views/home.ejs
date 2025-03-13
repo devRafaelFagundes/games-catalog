@@ -9,10 +9,18 @@
 <body>
     <ul>
         <% for (element of data) {%>
-            <li><a href="/games/<%=element._id%>"><%= element.title %>    >>   rating: <%= element.rating %></a></li>
+            <li> <a href="/games/<%=element._id%>"><%= element.title %>    >>   rating: <%= element.rating %></a></li>
+             <form action="/games/delete/<%= element._id %>?_method=DELETE" method="post">
+                <button type="submit">delete</button>
+             </form>
+
+             <form action="/games/update/<%=element._id%>" method="get">
+                <button type="submit">update</button>
+             </form>
             <hr>
         <%}; %>
     </ul>
+    <a href="/games/submit"> >> create new game</a>
     
 </body>
 </html>

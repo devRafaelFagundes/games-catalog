@@ -24,7 +24,13 @@ const showEspecificGame = async (req, res)=>{
     try {
         const gameId = req.params.id
         const gameById = await Game.findById(gameId)
-        res.json({
+        if (!gameById) {
+            res.status(404).json({
+                success : false,
+                message : 'no games were found'
+            })
+        }
+        res.status(200).json({
             success : true,
             data : gameById
         })

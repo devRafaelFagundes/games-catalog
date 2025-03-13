@@ -3,9 +3,11 @@ const path = require('path')
 const express = require('express')
 const connectDb = require('./database/db')
 const Router = require('./routes/games-routes')
+const methodOverride = require('method-override')
 
 const app = express();
 
+app.use(methodOverride('_method'))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
