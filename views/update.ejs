@@ -16,6 +16,12 @@
         <input type="number" name="year" value="<%= game.year %>" id="year" min="1500" required>
         <label for="rating">Rating: </label>
         <input type="number" name="rating" value="<%= game.rating %>" id="rating" min="0" max="10" required>
+        <select name="genre" id="filter">
+            <option value="board-game">boardgame</option>
+            <option value="plataformer">plataformer</option>
+            <option value="fps-shooter">fps-shooter</option>
+            <option value="other">other</option>
+        </select>
         <label for="about">About: </label>
         <input type="text" name="about" value="<%= game.about %>" id="about">
         <button type="submit">save</button>

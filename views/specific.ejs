@@ -1,2 +1,21 @@
-<%- include('./components/header.ejs')  %>
 <!-- here im going to do a better looking template for each game -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+ </head>
+ <body>
+    <hr>
+    <h1><%= game.title %></h1>
+    <hr>
+    <p>It was created in <%= game.year %> and it is owned by <%= game.owner %>, having the main genre <strong><%= game.genre %></strong> (based by the current website genre options)</p>
+    <h3>About</h3>
+    <% if (game.about) { %>
+        <%= game.about %>
+    <%} else { %>
+        <p>This game has no "about" information</p>
+    <%}%>
+ </body>
+ </html>

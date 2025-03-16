@@ -7,9 +7,19 @@
     <title>Home page</title>
 </head>
 <body>
+    <form action="/games" method="get">
+        <select name="genre" id="filter">
+            <option value="">Nenhum</option>
+            <option value="board-game">boardgame</option>
+            <option value="plataformer">plataformer</option>
+            <option value="fps-shooter">fps-shooter</option>
+            <option value="other">other</option>
+        </select>
+        <button type="submit">filter</button>
+    </form>
     <ul>
         <% for (element of data) {%>
-            <li> <a href="/games/<%=element._id%>"><%= element.title %>    >>   rating: <%= element.rating %></a></li>
+            <li> <a href="/games/<%=element._id%>"><%= element.title %>    >>   rating: <%= element.rating %> >> <%= element.genre %></a></li>
              <form action="/games/delete/<%= element._id %>?_method=DELETE" method="post">
                 <button type="submit">delete</button>
              </form>

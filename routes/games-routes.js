@@ -5,11 +5,13 @@ const Game = require('../models/games')
 const router = express.Router();
 
 
-router.get('/', (req, res)=>{
+router.get('/', async  (req, res)=>{
+    const Games = await Game.find()
     showAllGames(req, res)
 })
 router.get('/submit', (req, res)=>{
-    res.render('submit.ejs')
+    const maxYear = new Date().getFullYear()
+    res.render('submit.ejs', {maxYear})
 })
 router.get('/update/:id', async (req, res)=>{
     const game = await Game.findById(req.params.id)

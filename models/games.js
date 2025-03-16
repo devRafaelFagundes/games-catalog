@@ -19,6 +19,11 @@ const gameSchema = new mongoose.Schema({
         min : [0, 'the rating needs to be above or equal to 0'],
         trim : true
     },
+    genre : {
+        type : String,
+        required : [true, 'Its necessary to provide a genre for your game'],
+        enum : ['fps-shooter', 'plataformer', 'board-game', 'other']
+    },
     year : {
         type : Number,
         required : [true, 'it needs to have a year'],

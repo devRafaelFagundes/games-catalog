@@ -5,7 +5,13 @@ const Game = require('../models/games')
 
 const showAllGames = async (req, res)=> {
     try {
-        const allGames = await Game.find()
+        const genre = req.query.genre
+        const filtered = {}
+
+        if (genre) {
+            filtered.genre = genre
+        }
+        const allGames = await Game.find(filtered).sort({rating : -1})
         if (allGames?.length > 0) {
             res.render('home', {data : allGames})
         } else {
@@ -30,10 +36,7 @@ const showEspecificGame = async (req, res)=>{
                 message : 'no games were found'
             })
         }
-        res.status(200).json({
-            success : true,
-            data : gameById
-        })
+        res.render('specific', {game : gameById})
     } catch (e) {
         console.log(e)
         res.status(500).send('error trying to load specific game, try again later')
@@ -52,11 +55,7 @@ const updateGame = async (req, res)=>{
                 message : 'game not found, try with another id'
             })
         }
-        res.status(200).json({
-            success : true,
-            message : 'game updated successfully',
-            data : updatedGame
-        })
+        res.render('done', {game : updatedGame, message : 'Game updated successfully'})
     } catch (e) {
         console.log(e)
         res.status(500).send('something went wrong trying to create your game')
@@ -68,15 +67,11 @@ const createGame = async (req, res)=>{
     const newGame = await Game.create(newGameInfo)
 
     if (newGame) {
-        res.status(200).json({
-            success : true,
-            message : 'game created in the database'
-        })
+        res.render('done', {game : newGame, message : 'Game created successfully'})
     } else {
         res.status(500).json({
             success : false,
             message : "something went wrong",
-            data : newGame
         })
     }
 }
@@ -89,11 +84,7 @@ const deleteGame = async (req, res)=>{
             message : 'the game was not found, try with another id'
         })
     }
-    res.status(200).json({
-        success : true,
-        message : 'game deleted successfully',
-        data : deletedGame
-    })
+    res.render('done', {game : deletedGame, message : 'Game deleted successfully'})
 }
 
 module.exports = {showAllGames, showEspecificGame, updateGame, createGame, deleteGame}
