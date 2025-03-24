@@ -1,0 +1,120 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    height: 100vh;
+    background-color: #121314;
+}
+
+#filterButton {
+    width: 100px;
+    background-color: #2C2D33;
+    color: white;
+    border-radius: 30px;
+    border-style: none;
+}
+#filterButton:hover {
+    background-color: #FDC100;
+    color: black;
+} 
+#filter {
+    border: none;
+    width: 400px;
+    border: none;
+    background-color: #2C2D33;
+    color: white;
+}
+#filterButton, #filter {
+    height: 30px;
+    margin-top: 80px;
+    border-radius: 30px;
+}
+#homeFilter{
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    justify-content: center;
+    margin: auto;
+    align-items: flex-end;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+#gameCard {
+    width: 245px;
+    height: 245px;
+    background-color: #2C2D33;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 50px;
+    row-gap: 20px;
+    max-width: calc(265px * 5 + 50px * 4);
+    margin: auto;
+}
+#actionButtons {
+    width: 245;
+    height: 20px;
+    background-color: #2C2D33;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.cardWrapper {
+    width: 265px;
+    overflow: hidden;
+    margin-top: 5%;
+    box-shadow: 5px 5px 10px #232429;
+    border-radius: 15px;
+}
+.cardWrapper:hover {
+    box-shadow: 1px 1px 15px #383a41;
+}
+#image {
+    width: 245px;
+    height: 220px;
+    background-color: rgba(255, 255, 255, 0.281);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+}
+#image:hover {
+    background-color: rgba(255, 255, 255, 0.356);
+}
+
+#create {
+    height: 30px;
+    width: 100px;
+    background-color: #2C2D33;
+    color: white;
+    border-radius: 30px;
+    border-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#create:hover {
+    background-color: #FDC100;
+    color: black;
+}
+
+/* footer {
+    background-color: rgb(255, 255, 255);
+    height: 100px;    
+} */
+

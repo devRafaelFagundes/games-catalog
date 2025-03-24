@@ -5,32 +5,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home page</title>
+    <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
-    <form action="/games" method="get">
-        <select name="genre" id="filter">
-            <option value="">Nenhum</option>
-            <option value="board-game">boardgame</option>
-            <option value="plataformer">plataformer</option>
-            <option value="fps-shooter">fps-shooter</option>
-            <option value="other">other</option>
-        </select>
-        <button type="submit">filter</button>
-    </form>
-    <ul>
-        <% for (element of data) {%>
-            <li> <a href="/games/<%=element._id%>"><%= element.title %>    >>   rating: <%= element.rating %> >> <%= element.genre %></a></li>
-             <form action="/games/delete/<%= element._id %>?_method=DELETE" method="post">
-                <button type="submit">delete</button>
-             </form>
 
-             <form action="/games/update/<%=element._id%>" method="get">
-                <button type="submit">update</button>
-             </form>
-            <hr>
-        <%}; %>
-    </ul>
-    <a href="/games/submit"> >> create new game</a>
+    <% if (message) { %>
+        <script>
+            alert("<%= message %>")    
+        </script>
+    <% } %>
+    <div id="genreDisplay">
+        <form action="/games" method="get" id="homeFilter">
+            <div id="create">
+                <a href="/games/submit" id="create">Create Rating</a>
+            </div>
+            <select name="genre" id="filter">
+                <option value="" class="option">Nenhum</option>
+                <option value="board-game" class="option">boardgame</option>
+                <option value="plataformer" class="option">  plataformer</option>
+                <option value="fps-shooter" class="option">fps-shooter</option>
+                <option value="other" class="option">other</option>
+            </select>
+            <button type="submit" class="button" id="filterButton">Filter</button>
+        </form>      
+    </div>
+
+    <div id="container">
+        <% for (element of data) { %>
+
+            <div class="cardWrapper">
+                <div id="gameCard">
+                    <a href="/games/<%=element._id%>">
+                        <div id="image">
+                            <p>*image</p>
+                        </div>
+                    </a>
+
+                    <div id="titleCard">
+                        <%= element.title %>
+                    </div>
+                </div>
+                <div id="actionButtons">
+                    <form action="/games/delete/<%= element._id %>?_method=DELETE" method="post">
+                        <button type="submit" class="button" id="deleteButton">delete</button>
+                    </form>
+        
+                    <form action="/games/update/<%=element._id%>" method="get">
+                        <button type="submit" class="button" id="updateButton">update</button>
+                    </form>
+                </div>
+
+            </div>
+        <% }; %>
+    </div>
     
+    <footer>
+        <!-- content... -->
+    </footer>
+
 </body>
 </html>

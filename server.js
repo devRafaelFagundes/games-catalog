@@ -7,14 +7,21 @@ const methodOverride = require('method-override')
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'public')))
+//configurate the style at the "public" folder
+
 app.use(methodOverride('_method'))
+//for sending "delete" and "put" methods in the EJS
+
 app.use(express.urlencoded({ extended: true }));
+//reading forms information
+
 app.use(express.json())
+
 
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
-
-
+//set EJS and views folder
 
 app.use('/games', Router)
 

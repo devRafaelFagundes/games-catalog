@@ -6,11 +6,10 @@ const router = express.Router();
 
 
 router.get('/', async  (req, res)=>{
-    const Games = await Game.find()
     showAllGames(req, res)
 })
-router.get('/submit', (req, res)=>{
-    const maxYear = new Date().getFullYear()
+router.get('/submit', async (req, res)=>{
+    const maxYear =  new Date().getFullYear()
     res.render('submit.ejs', {maxYear})
 })
 router.get('/update/:id', async (req, res)=>{

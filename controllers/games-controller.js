@@ -5,21 +5,19 @@ const Game = require('../models/games')
 
 const showAllGames = async (req, res)=> {
     try {
+        let message
         const genre = req.query.genre
         const filtered = {}
 
         if (genre) {
             filtered.genre = genre
         }
-        const allGames = await Game.find(filtered).sort({rating : -1})
-        if (allGames?.length > 0) {
-            res.render('home', {data : allGames})
-        } else {
-            res.status(404).json({
-                message : 'no games found'
-            })
+        let allGames = await Game.find(filtered).sort({rating : -1})
+        if (genre && allGames?.length === 0) {
+            allGames = await Game.find().sort({rating : -1})
+            message = 'No games were matched with filter requisition'
         }
-        
+        res.render('home', {data : allGames, message})
     } catch (e) {
         console.log(e)
         res.status(500).send('error trying to load game, try again later')
@@ -36,10 +34,11 @@ const showEspecificGame = async (req, res)=>{
                 message : 'no games were found'
             })
         }
-        res.render('specific', {game : gameById})
+        const maxYear = new Date().getFullYear()
+        res.render('specific', {game : gameById, maxYear})
     } catch (e) {
         console.log(e)
-        res.status(500).send('error trying to load specific game, try again later')
+        res.status(404).render('error', {message : 'Game not found', status : "404"})
     }
 }
 
