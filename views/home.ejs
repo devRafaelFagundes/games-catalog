@@ -29,7 +29,6 @@
             <button type="submit" class="button" id="filterButton">Filter</button>
         </form>      
     </div>
-
     <div id="container">
         <% for (element of data) { %>
 
@@ -37,7 +36,7 @@
                 <div id="gameCard">
                     <a href="/games/<%=element._id%>">
                         <div id="image">
-                            <p>*image</p>
+                            <p><%= element.rating %></p>
                         </div>
                     </a>
 
@@ -54,7 +53,6 @@
                         <button type="submit" class="button" id="updateButton">update</button>
                     </form>
                 </div>
-
             </div>
         <% }; %>
     </div>

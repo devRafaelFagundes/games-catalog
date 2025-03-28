@@ -55,14 +55,13 @@ a {
     padding: 10px;
 }
 #container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    column-gap: 50px;
-    row-gap: 20px;
-    max-width: calc(265px * 5 + 50px * 4);
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-items: center;
     margin: auto;
+    margin-top: 20px;
+    width: 75%;
 }
 #actionButtons {
     width: 245;
@@ -73,11 +72,13 @@ a {
 
 }
 .cardWrapper {
+    position: relative;
     width: 265px;
     overflow: hidden;
-    margin-top: 5%;
+    margin-top: 10%;
     box-shadow: 5px 5px 10px #232429;
     border-radius: 15px;
+
 }
 .cardWrapper:hover {
     box-shadow: 1px 1px 15px #383a41;
@@ -95,7 +96,10 @@ a {
 #image:hover {
     background-color: rgba(255, 255, 255, 0.356);
 }
-
+#image > p {
+    color: rgb(255, 255, 255);
+    font-size: 3em;
+}
 #create {
     height: 30px;
     width: 100px;
@@ -111,10 +115,25 @@ a {
 #create:hover {
     background-color: #FDC100;
     color: black;
+    transition: background-color 0.3s ease-in-out;
 }
 
 /* footer {
     background-color: rgb(255, 255, 255);
     height: 100px;    
 } */
+.button {
+    border-style: none;
+    background-color: #FDC100;
+    color: black;
+    border-radius: 10px;
+    width: 60px;
+    height: 20px;
+}
+.button:hover {
+    background-color: black;
+    color: #FDC100;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
 

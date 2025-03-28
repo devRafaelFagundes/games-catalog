@@ -1,3 +1,90 @@
-#formsSubmit {
-    margin-top: 50px;
+* {
+    margin: 0px;
+    padding: 0px;
+}
+header {
+    z-index: 1000;
+}
+body {
+    height: 100vh;
+    background-color: black;
+}
+#background {
+    height: 80vh;
+    width: 100%;
+    background-image: url('../images/image.png');
+    background-size: cover;
+    display: flex;
+}
+#formsSpace {
+    height: 100%;
+    width: 45%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form {
+    display: flex;
+    flex-direction: column;
+    height: 275px;
+    width: 350px;
+    background-color: #2C2D33;
+    padding: 10px;
+    color: white;
+    font-size: 1.1em;
+    border-radius: 10px;
+}
+
+#form div {
+    overflow: hidden;
+}
+#fade {
+    height: 100%;
+    width: 10%;
+    background-image: linear-gradient(to right, black, transparent);
+    display: flex;
+    align-items: center;
+}
+#submit {
+    background-color: transparent;
+    width: 100%;
+    height: 40px;
+    border-radius: 30px;
+    color: #FDC100;
+    border-color: #FDC100;
+    font-size: 1.5em;
+}
+#submit:hover {
+    background-color: #FDC100;
+    color: white;
+    border: black;
+    cursor: pointer;
+    text-shadow: 2px 2px 1px #e2b009;
+    
+}
+.input {
+    margin-top: 10px;
+    width: 100%;
+    height: 20px;
+}
+#aboutSpace {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    margin-top: -2em;
+}
+#aboutSpace > label {
+    font-size: 2em;
+    color: white;
+}
+textarea {
+    width: 50%;
+    height: 275px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
 }
