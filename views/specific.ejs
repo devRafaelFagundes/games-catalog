@@ -4,21 +4,30 @@
  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="specific.css">
+    <link rel="stylesheet" href="/css/specific.css">
     <title><%= game.title %></title>
  </head>
  <body>
-    <hr>
-    <h1><%= game.title %></h1>
-    <hr>
-    <p>It was created in <%= game.year %> and it is owned by <%= game.owner %>, having the main genre <strong><%= game.genre %></strong> (based by the current website genre options)</p>
-    <h3>About</h3>
+    <div id="logo">
+        <%- include('./components/header.ejs')  %>
+    </div>
+    <header>
+        <h1><%= game.title %></h1>
+    </header>
+    <main>
+        <h3>Basic information</h3>
+        <p>It was created in <%= game.year %> and it is owned by <%= game.owner %>, having the main genre <strong><%= game.genre %></strong> (based by the current website genre options)</p>
+    <h3>More</h3>
     <% if (game.about) { %>
-        <%= game.about %>
-    <%} else { %>
+        <div id="about" style="white-space: pre-wrap;"><%=game.about%></div>
+        <%} else { %>
         <p>This game has no "about" information</p>
     <%}%>
-    <br>
-    <a href="/games">back to homepage</a>
+    </main>
+    <a href="/games" id="homepage">back to homepage</a>
+
+    <footer>
+
+    </footer>
  </body>
  </html>

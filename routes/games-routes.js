@@ -14,13 +14,14 @@ router.get('/submit', async (req, res)=>{
 })
 router.get('/update/:id', async (req, res)=>{
     const game = await Game.findById(req.params.id)
+    const maxYear =  new Date().getFullYear()
     if (!game) {
         res.status(404).json({
             success : false,
             message : "game not found"
         })
     }
-    res.render('update', {id : req.params.id, game})
+    res.render('update', {id : req.params.id, game, maxYear})
 })
 router.put('/update/:id', (req, res)=>{
     updateGame(req, res)
