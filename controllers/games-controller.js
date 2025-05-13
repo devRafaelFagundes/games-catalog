@@ -36,6 +36,7 @@ const showEspecificGame = async (req, res)=>{
         }
         const maxYear = new Date().getFullYear()
         res.render('specific', {game : gameById, maxYear})
+
     } catch (e) {
         console.log(e)
         res.status(404).render('error', {message : 'Game not found', status : "404"})

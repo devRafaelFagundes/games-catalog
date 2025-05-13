@@ -5,7 +5,7 @@
 
 body {
     height: 100vh;
-    background-color: #121314;
+    background-color: #1e1e2f;
 }
 a {
     text-decoration: none;
@@ -44,7 +44,7 @@ a {
 #gameCard {
     width: 245px;
     height: 245px;
-    background-color: #2c2c2c;
+    background-color: #2a2b3d;
     color: white;
     display: flex;
     flex-direction: column;
