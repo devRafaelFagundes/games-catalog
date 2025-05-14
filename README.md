@@ -2,6 +2,9 @@
 
 O **Games Catalog** é um projeto fullstack que desenvolvi para praticar Node.js, Express e MongoDB. A ideia é criar um sistema simples para cadastrar, listar, editar e remover jogos — algo útil tanto para quem quer organizar uma coleção quanto para estudar os conceitos de CRUD, rotas REST e EJS no frontend.
 
+![imagem da página principal do site](./public/images/mainPage.png)
+![imagem do processo de criar um jogo no site](./public/images/createGame.png)
+
 ## Funcionalidades
 
 * **Adicionar jogos**: Crie novos cadastros com título, gênero, desenvolvedor e data de lançamento.
