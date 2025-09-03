@@ -19,7 +19,6 @@ O **Games Catalog** é um projeto fullstack que desenvolvi para praticar Node.js
 * **MongoDB** com Mongoose para o banco de dados
 * **EJS** como template engine para as views
 * **Dotenv** para variáveis de ambiente
-* **Nodemon** para reinício automático durante o desenvolvimento
 * **Method-Override** para permitir métodos PUT e DELETE via formulários HTML
 
 ## Como Executar o Projeto
