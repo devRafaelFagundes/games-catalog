@@ -7,6 +7,8 @@ const methodOverride = require('method-override')
 
 const app = express();
 
+app.get('/favicon.ico', (req, res) => res.status(204));
+
 app.use(express.static(path.join(__dirname, 'public')))
 //configurate the style at the "public" folder
 
