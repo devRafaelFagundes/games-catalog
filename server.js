@@ -23,7 +23,7 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 //set EJS and views folder
 
-app.use('/games', Router)
+app.use('/', Router)
 
 
 

@@ -5,7 +5,6 @@ const Game = require('../models/games')
 
 const showAllGames = async (req, res)=> {
     try {
-        let message
         const genre = req.query.genre
         const filtered = {}
 
@@ -13,11 +12,16 @@ const showAllGames = async (req, res)=> {
             filtered.genre = genre
         }
         let allGames = await Game.find(filtered).sort({rating : -1})
-        if (genre && allGames?.length === 0) {
-            allGames = await Game.find().sort({rating : -1})
-            message = 'No games were matched with filter requisition'
+        if(!allGames) {
+            return res.status(404).json({
+                success: false,
+                message : "No games were found"
+            })
         }
-        res.render('home', {data : allGames, message})
+        return res.status(200).json({
+            success: true,
+            allGames
+        })
     } catch (e) {
         console.log(e)
         res.status(500).send('error trying to load game, try again later')

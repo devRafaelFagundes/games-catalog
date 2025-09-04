@@ -8,14 +8,8 @@
     <link rel="stylesheet" href="/css/home.css">
 </head>
 <body>
-
-    <% if (message) { %>
-        <script>
-            alert("<%= message %>")    
-        </script>
-    <% } %>
     <div id="genreDisplay">
-        <form action="/games" method="get" id="homeFilter">
+        <form id="homeFilter">
             <div id="create">
                 <a href="/games/submit" id="create">Create Rating</a>
             </div>
@@ -26,40 +20,16 @@
                 <option value="fps-shooter" class="option">fps-shooter</option>
                 <option value="other" class="option">other</option>
             </select>
-            <button type="submit" class="button" id="filterButton">Filter</button>
+            <button class="button" id="filterButton">Filter</button>
         </form>      
     </div>
     <div id="container">
-        <% for (element of data) { %>
-
-            <div class="cardWrapper">
-                <div id="gameCard">
-                    <a href="/games/<%=element._id%>">
-                        <div id="image">
-                            <p><%= element.rating %></p>
-                        </div>
-                    </a>
-
-                    <div id="titleCard">
-                        <%= element.title %>
-                    </div>
-                </div>
-                <div id="actionButtons">
-                    <form action="/games/delete/<%= element._id %>?_method=DELETE" method="post">
-                        <button type="submit" class="button" id="deleteButton">delete</button>
-                    </form>
         
-                    <form action="/games/update/<%=element._id%>" method="get">
-                        <button type="submit" class="button" id="updateButton">update</button>
-                    </form>
-                </div>
-            </div>
-        <% }; %>
     </div>
     
     <footer>
         <!-- content... -->
     </footer>
-
+    <script src="/js/home.js"></script>
 </body>
 </html>

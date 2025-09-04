@@ -4,8 +4,10 @@ const {showAllGames, showEspecificGame, updateGame, createGame, deleteGame} = re
 const Game = require('../models/games')
 const router = express.Router();
 
-
-router.get('/', async  (req, res)=>{
+router.get('/', async (req, res) => {
+    res.render('home.ejs')
+})
+router.get('/games', async  (req, res)=>{
     showAllGames(req, res)
 })
 router.get('/submit', async (req, res)=>{
