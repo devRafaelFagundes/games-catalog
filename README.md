@@ -20,6 +20,8 @@ O **Games Catalog** é um projeto fullstack que desenvolvi para praticar Node.js
 * **EJS** como template engine para as views
 * **Dotenv** para variáveis de ambiente
 * **Method-Override** para permitir métodos PUT e DELETE via formulários HTML
+* **Multer** para receber e manipular arquivos enviados pelo usuário
+* **File System e Path** para organizar caminhos e arquivos
 
 ## Como Executar o Projeto
 
