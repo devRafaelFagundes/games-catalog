@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Done successfully</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Done successfully</title>
+  <link rel="stylesheet" href="/css/specific.css">
 </head>
 <body>
-    <%- include('./specific') %>
-    <h3><%= message %></h3>
+  <div class="done-container">
+    <div class="done-card">
+      <div class="checkmark">✔</div>
+      <h3><%= message %></h3>
+      <a href="/" class="btn">Go back home</a>
+    </div>
+  </div>
 </body>
 </html>

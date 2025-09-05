@@ -22,7 +22,7 @@ function renderGames(gamesArray) {
 
     const imageDiv = document.createElement("div");
     imageDiv.id = "image";
-    imageDiv.innerHTML = game.imageUrl ? `<img src="${game.imageUrl}" alt="${game.title}">` : "<span>📷</span>";
+    imageDiv.innerHTML = game.image ? `<img src="${game.image}" alt="${game.title}">` : "<span>📷</span>";
 
     const title = document.createElement("h3");
     title.textContent = game.title;

@@ -1,68 +1,70 @@
 * {
-    margin: 0px;
-    padding: 0px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
 body {
-    background-color: black;
-    color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #111, #222);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
 }
-main {
-    box-sizing: border-box;
-    position: relative;
-    height: 50vh;
-    width: 40%;
-    background-color: #2c2c2c;
-    justify-content: center;
-    text-align: justify;
-    margin: auto;
-    /* box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.432); */
-    border-radius: 10px;
-    padding: 10px;
-    margin-top: 15px;
+
+.done-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
-main::after {
-    content: '';
-    position: absolute;
-    background-color: red;
-    height: 100%;
-    width: 100%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    padding: 3px;
-    background-image: conic-gradient(red, blue, orange, green, red);
-    border-radius: 10px;
-    filter: blur(0.4rem);
+
+.done-card {
+  background: rgba(40, 40, 40, 0.9);
+  padding: 2em 3em;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  animation: fadeIn 0.6s ease;
 }
-h3, h1 {
-    font-family: cursive;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+
+.checkmark {
+  font-size: 3em;
+  color: #4CAF50;
+  margin-bottom: 0.5em;
+  animation: pop 0.4s ease;
 }
-header > h1 {
-    margin-top: 30px;
+
+.done-card h3 {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+  color: #f1f1f1;
 }
-#homepage {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2em;
-    width: 50px;
-    height: 25px;
-    border: solid #FDC100;
-    height: 10%;;
-    padding: 5px;
-    border-radius: 15px;
-    margin-left: 20px;
+
+.btn {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  background: #FDC100;
+  color: black;
+  font-weight: bold;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
-#homepage:hover {
-    color: #FDC100;
-    cursor: pointer;
-    
+
+.btn:hover {
+  background: #e2b009;
+  transform: scale(1.05);
 }
-about {
-    min-height: 400px;
-    width: 100%;
-    background-color: white;
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(-10px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes pop {
+  from {transform: scale(0.5); opacity: 0;}
+  to {transform: scale(1); opacity: 1;}
 }

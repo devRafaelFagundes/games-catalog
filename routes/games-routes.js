@@ -1,5 +1,6 @@
 //all the games routes duhhh
 const express = require('express');
+const uploadMiddleware = require('../middlewares/uploadMiddleware')
 const {showAllGames, showEspecificGame, updateGame, createGame, deleteGame} = require('../controllers/games-controller')
 const Game = require('../models/games')
 const router = express.Router();
@@ -29,7 +30,7 @@ router.get('/update/:id', async (req, res)=>{
 router.put('/update/:id', (req, res)=>{
     updateGame(req, res)
 })
-router.post('/submit', (req, res)=>{
+router.post('/submit', uploadMiddleware.single('image'), (req, res)=>{
     createGame(req, res)
 })
 router.delete('/delete/:id', (req, res)=>{

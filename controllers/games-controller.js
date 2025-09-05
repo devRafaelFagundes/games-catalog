@@ -63,12 +63,17 @@ const updateGame = async (req, res)=>{
     } catch (e) {
         console.log(e)
         res.status(500).send('something went wrong trying to create your game')
+        
     }
 }
 
 const createGame = async (req, res)=>{
-    const newGameInfo = req.body;
-    const newGame = await Game.create(newGameInfo)
+    //req.file to acccess the image info
+    const {title, owner, year, rating, genre, about} = req.body;
+    const newGame = await Game.create({
+        ...req.body,
+        image: req.file ? "/uploads/" + req.file.filename : null
+    })
 
     if (newGame) {
         res.render('done', {game : newGame, message : 'Game created successfully'})
