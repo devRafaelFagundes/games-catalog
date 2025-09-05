@@ -1,56 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submit Game</title>
-  <link rel="stylesheet" href="/css/submit.css">
-</head>
-<body>
-  <header>
-    <%- include('./components/header.ejs') %>
-  </header>
-  <main>
-    <div id="background">
-      <div id="formsSpace">
-        <div id="formsInformation">
-          <form action="/submit" id="form" method="post">
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Game</title>
+    <link rel="stylesheet" href="/css/submit.css" />
+  </head>
+  <body>
+    <header>
+      <%- include('./components/header.ejs') %>
+    </header>
+
+    <main class="container">
+      <section class="card form-card">
+        <h2 class="title">Add a new game</h2>
+
+        <form action="/submit" id="form" method="post" enctype="multipart/form-data">
+          <div class="row">
+            <label for="title">Title</label>
+            <input
+              class="input"
+              type="text"
+              name="title"
+              id="title"
+              maxlength="65"
+              placeholder="65 characters max"
+              required
+            />
+          </div>
+
+          <div class="row">
+            <label for="owner">Owner</label>
+            <input
+              class="input"
+              type="text"
+              name="owner"
+              id="owner"
+              maxlength="60"
+              placeholder="60 characters max"
+              required
+            />
+          </div>
+
+          <div class="row double">
             <div>
-              <label for="title">Title:</label>
-              <input type="text" name="title" id="title" maxlength="65" placeholder="65 characters max" required class="input">
+              <label for="year">Year</label>
+              <input
+                class="input"
+                type="number"
+                name="year"
+                id="year"
+                min="1800"
+                max="<%= maxYear %>"
+                placeholder="between 1800 and <%= maxYear %>"
+                required
+              />
             </div>
+
             <div>
-              <label for="owner">Owner:</label>
-              <input type="text" name="owner" id="owner" maxlength="60" placeholder="60 characters max" required class="input">
+              <label for="rating">Rating</label>
+              <input
+                class="input"
+                type="number"
+                name="rating"
+                id="rating"
+                min="0"
+                max="10"
+                placeholder="between 1 and 10"
+                required
+              />
             </div>
-            <div>
-              <label for="year">Year:</label>
-              <input type="number" name="year" min="1800" max="<%= maxYear %>" id="year" placeholder="between 1800 and <%= maxYear %>" required class="input">
+          </div>
+
+          <div class="row">
+            <label for="genre_submit">Genre</label>
+            <select class="input" name="genre" id="genre_submit">
+              <option value="board-game">boardgame</option>
+              <option value="plataformer">plataformer</option>
+              <option value="fps-shooter">fps-shooter</option>
+              <option value="other">other</option>
+            </select>
+          </div>
+
+          <div class="row file-row">
+            <label for="image">Image</label>
+            <div class="file-control">
+              <input class="file-input" type="file" name="image" id="image" accept="image/*" />
+              <button type="button" class="file-btn" id="chooseBtn">Escolher imagem</button>
+              <span class="file-name" id="fileName">Nenhuma imagem selecionada</span>
             </div>
-            <div>
-              <label for="rating">Rating:</label>
-              <input type="number" name="rating" id="rating" min="0" max="10" placeholder="between 1 and 10" required class="input">
+            <div class="preview" id="preview">
+              <img id="previewImg" src="" alt="" hidden />
             </div>
-            <div>
-              <label for="genre_submit">Genre:</label>
-              <select name="genre" id="genre_submit" class="input">
-                <option value="board-game">boardgame</option>
-                <option value="plataformer">plataformer</option>
-                <option value="fps-shooter">fps-shooter</option>
-                <option value="other">other</option>
-              </select>
-            </div>
-          </form>
+          </div>
+
+          <div class="row">
+            <label for="about">About</label>
+            <textarea
+              class="input textarea"
+              name="about"
+              id="about"
+              rows="6"
+              placeholder="Short description..."
+            ></textarea>
+          </div>
+
+          <div class="actions">
+            <button type="submit" id="submit" class="btn primary">SUBMIT</button>
+            <a href="/" class="btn ghost">Cancel</a>
+          </div>
+        </form>
+      </section>
+
+      <aside class="card info-card">
+        <h3>Tips</h3>
+        <ul>
+          <li>Use imagens até 2–5MB.</li>
+          <li>Formato recomendado: PNG ou JPG.</li>
+        </ul>
+
+        <div class="example">
+          <strong>Preview</strong>
+          <div class="preview-sample" id="previewSample">
+            <img id="sampleImg" src="" alt="" hidden />
+          </div>
         </div>
-      </div>
-      <div id="fade">
-        <button type="submit" form="form" id="submit">SUBMIT</button>
-      </div>
-      <div id="aboutSpace">
-        <label for="about">About</label>
-        <textarea type="text" name="about" id="about" form="form"></textarea>
-      </div>
-    </div>
-  </main>
-</body>
+      </aside>
+    </main>
+
+    <script>
+      const imageInput = document.getElementById('image');
+      const chooseBtn = document.getElementById('chooseBtn');
+      const fileNameSpan = document.getElementById('fileName');
+      const previewImg = document.getElementById('previewImg');
+      const sampleImg = document.getElementById('sampleImg');
+
+      chooseBtn.addEventListener('click', function () {
+        imageInput.click();
+      });
+
+      imageInput.addEventListener('change', function (e) {
+        const file = e.target.files[0];
+
+        if (!file) {
+          fileNameSpan.textContent = 'Nenhuma imagem selecionada';
+          previewImg.hidden = true;
+          sampleImg.hidden = true;
+          return;
+        }
+
+        fileNameSpan.textContent = file.name;
+
+        const url = URL.createObjectURL(file);
+        previewImg.src = url;
+        sampleImg.src = url;
+        previewImg.hidden = false;
+        sampleImg.hidden = false;
+
+        previewImg.onload = function () {
+          URL.revokeObjectURL(url);
+        };
+      });
+    </script>
+  </body>
 </html>
