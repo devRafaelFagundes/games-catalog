@@ -15,7 +15,7 @@ const showAllGames = async (req, res)=> {
             filtered.genre = genre
         }
         let allGames = await Game.find(filtered).sort({rating : -1})
-        if(!allGames) {
+        if(allGames.length === 0) {
             return res.status(404).json({
                 success: false,
                 message : "No games were found"
@@ -52,7 +52,12 @@ const showEspecificGame = async (req, res)=>{
 
 const updateGame = async (req, res)=>{
     try {
-        const updateGame = req.body;
+        const updateGame = {
+            ...req.body
+        }
+        if (req.file) {
+            updateGame.image = '/uploads/' + req.file.filename
+        }
         const updatedGame = await Game.findByIdAndUpdate(req.params.id, updateGame, {
             new : true
         })

@@ -29,7 +29,7 @@ router.get('/update/:id', async (req, res)=>{
     res.render('update', {id : req.params.id, game, maxYear});
 });
 
-router.put('/update/:id', (req, res)=>{
+router.put('/update/:id', uploadMiddleware.single('image'), (req, res)=>{
     updateGame(req, res);
 });
 
