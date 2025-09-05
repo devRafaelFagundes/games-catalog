@@ -1,6 +1,9 @@
 //functions to be called by the router, so it needs to have all the query logic here, also, it needs to render the ejs page and pass the info
 const express = require('express')
 const mongoose = require('mongoose')
+const fs = require('fs');
+const path = require('path')
+
 const Game = require('../models/games')
 
 const showAllGames = async (req, res)=> {
@@ -86,14 +89,32 @@ const createGame = async (req, res)=>{
 }
 
 const deleteGame = async (req, res)=>{
-    const deletedGame = await Game.findByIdAndDelete(req.params.id)
-    if (!deletedGame) {
-        res.status(404).json({
-            success : false,
-            message : 'the game was not found, try with another id'
+    try {
+        const deletedGame = await Game.findByIdAndDelete(req.params.id)
+        if (!deletedGame) {
+            return res.status(404).json({
+                success : false,
+                message : 'the game was not found, try with another id'
+            })
+        }
+        if(deletedGame.image) {
+            const filePath = path.join(__dirname, 'public', '..', deletedGame.image)
+            try {
+                await fs.promises.unlink('./public' + deletedGame.image)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        res.render('done', {game : deletedGame, message : 'Game deleted successfully'})
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            success: false,
+            message: 'something went wrong when trying to delete the game'
         })
     }
-    res.render('done', {game : deletedGame, message : 'Game deleted successfully'})
+    
 }
 
 module.exports = {showAllGames, showEspecificGame, updateGame, createGame, deleteGame}
